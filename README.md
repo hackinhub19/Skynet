@@ -1,6 +1,6 @@
 # Skynet
 
-#switch to branch working_ui and run dashboard.py
+# switch to branch working_ui and run dashboard.py
 
 
 for sample
