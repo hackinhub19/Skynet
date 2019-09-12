@@ -1,0 +1,1 @@
+{"text": "one two three", "top_class": "neither", "classes": [{"class_name": "hate_speech", "confidence": 0.03918328423164064}, {"class_name": "offensive_language", "confidence": 0.35502947446900807}, {"class_name": "neither", "confidence": 0.6057872412993514}]}
