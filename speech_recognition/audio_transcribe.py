@@ -2,6 +2,8 @@
 
 import speech_recognition as sr
 from os import path
+from hatesonar import Sonar
+import json
 # obtain path to "english.wav" in the same folder as this script
 def audio_extract (AUDIO_FILE):
     r = sr.Recognizer()
@@ -10,15 +12,21 @@ def audio_extract (AUDIO_FILE):
 
     # recognize speech using Sphinx
     try:
-        file = open("data.txt","w") 
         text = r.recognize_sphinx(audio)
-        file.writelines(text)
-        file.close()
+        return (text)
     except sr.UnknownValueError:
-        print("Sphinx could not understand audio")
+        return("Sphinx could not understand audio")
     except sr.RequestError as e:
-        print("Sphinx error; {0}".format(e))
+        return("Sphinx error; {0}".format(e))
+
+def speech_analysis(data):
+    sonar = Sonar ()
+    out = sonar.ping(data)
+    with open('data.json', 'w') as json_file:
+        json.dump(out, json_file)
+        print(out)
         
 AUDIO_FILE = path.join(path.dirname(path.realpath(__file__)), "english.wav")
 
-audio_extract(AUDIO_FILE)
+TEXT = audio_extract(AUDIO_FILE)
+speech_analysis(TEXT)
