@@ -195,6 +195,7 @@ class Ui_MainWindow(object):
         self.upload_tracker.clicked.connect(self.uploadTracker)
         self.upload_audio.clicked.connect(self.uploadAudio)
         self.upload_hate.clicked.connect(self.uploadHate)
+        self.upload_tracker.clicked.connect(self.uploadTracker)
 
 
     
@@ -389,6 +390,21 @@ class Ui_MainWindow(object):
             data=json.loads(open('./hate/data.json').read())
               
             QMessageBox.about(None, "SKynet","'%' of Hate Speach: "+str(data['classes'][0]['confidence'])+" \n '%' of Offensive Language:"+str(data['classes'][1]['confidence'])+" \n '%' of Neutral:"+str(data['classes'][2]['confidence']))
+        else:
+            QMessageBox.about(None, "SKynet", "Error! Audio Uploading Failed")
+
+    def uploadTracker(self):
+        fileName = QFileDialog.getSaveFileName(None, 'Dialog Title', "", "")
+
+        if fileName[0]:
+            QMessageBox.about(None, "SKynet", "Audio Uploaded Successfully! Draw aroud the vehicle")
+            
+            txt = "python3 ./tracking/main.py '"+fileName[0]+"'"
+            process = subprocess.Popen(
+                txt, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            out, err = process.communicate()
+
+              
         else:
             QMessageBox.about(None, "SKynet", "Error! Audio Uploading Failed")
 
