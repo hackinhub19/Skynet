@@ -9,3 +9,5 @@ to check audio extractor upload the audio in audio folder 'sample_audio.wav'
 to check hate speech anaylsis upload the audio in hate folder 'sample_audio.wav'
 
 if you want to check with your videos you can 
+
+added requirement files in master branch
